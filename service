@@ -1,1 +1,36 @@
 
+
+package com.example.icecream.service;
+
+import com.example.icecream.model.IceCream;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Service
+public class IceCreamService {
+
+    private final List<IceCream> iceCreamList = new ArrayList<>();
+
+    public IceCreamService() {
+        // Adding some default ice creams
+        iceCreamList.add(new IceCream(1L, "Vanilla", "Small"));
+        iceCreamList.add(new IceCream(2L, "Chocolate", "Medium"));
+    }
+
+    public List<IceCream> getAllIceCreams() {
+        return iceCreamList;
+    }
+
+    public IceCream getIceCreamById(Long id) {
+        return iceCreamList.stream()
+                .filter(i -> i.getId().equals(id))
+                .findFirst()
+                .orElse(null);
+    }
+
+    public void addIceCream(IceCream iceCream) {
+        iceCreamList.add(iceCream);
+    }
+}
