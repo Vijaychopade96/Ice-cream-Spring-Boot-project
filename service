@@ -19,10 +19,12 @@ public class IceCreamService {
         iceCreamList.add(new IceCream(2L, "Chocolate", "Medium"));
     }
 
+//lict on the class
     public List<IceCream> getAllIceCreams() {
         return iceCreamList;
     }
 
+//create the new item on the model class
     public IceCream getIceCreamById(Long id) {
         return iceCreamList.stream()
                 .filter(i -> i.getId().equals(id))
@@ -30,7 +32,38 @@ public class IceCreamService {
                 .orElse(null);
     }
 
+//add the item on the ice
     public void addIceCream(IceCream iceCream) {
         iceCreamList.add(iceCream);
     }
 }
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+@Service
+public class IceCreamService {
+
+    @Autowired
+    private IceCreamRepository iceCreamRepository;
+
+//list on theice cream
+public List<IceCream> getAllIceCreams() {
+        return iceCreamRepository.findAll();
+    }
+
+   //remove item on the ice cream
+    public IceCream getIceCreamById(Long id) {
+        return iceCreamRepository.findById(id).orElse(null);
+    }
+
+    public void addIceCream(IceCream iceCream) {
+        iceCreamRepository.save(iceCream);
+    }
+
+//save item on the cart
+public void addCart(Ice ice){
+iceRepo.save(ice);
+}
+
