@@ -1,1 +1,32 @@
 
+package com.example.icecream.controller;
+
+import com.example.icecream.model.IceCream;
+import com.example.icecream.service.IceCreamService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/icecreams")
+public class IceCreamController {
+
+    @Autowired
+    private IceCreamService iceCreamService;
+
+    @GetMapping
+    public List<IceCream> getAllIceCreams() {
+        return iceCreamService.getAllIceCreams();
+    }
+
+    @GetMapping("/{id}")
+    public IceCream getIceCreamById(@PathVariable Long id) {
+        return iceCreamService.getIceCreamById(id);
+    }
+
+    @PostMapping
+    public void addIceCream(@RequestBody IceCream iceCream) {
+        iceCreamService.addIceCream(iceCream);
+    }
+}
